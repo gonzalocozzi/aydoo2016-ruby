@@ -32,4 +32,12 @@ class AnalizadorDeArgumentos
   	elegido_sort
   end
 
+  def output_file
+  	elegido_output_file = false
+  	if argumentos.include? "--output-file="
+  		elegido_output_file = true
+  	end
+  	elegido_output_file
+  end
+
 end

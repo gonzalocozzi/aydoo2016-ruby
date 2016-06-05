@@ -24,4 +24,11 @@ describe AnalizadorDeArgumentos do
     expect(analizador.sort).to eq true
   end
 
+  it 'deberia indicar que recibio argumento output file' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+	analizador = AnalizadorDeArgumentos.new  "--output-file=path" , factorizacion
+    expect(analizador.output_file).to eq true
+  end
+
 end
