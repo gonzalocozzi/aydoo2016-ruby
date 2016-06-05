@@ -89,5 +89,13 @@ describe AnalizadorDeArgumentos do
 	analizador = AnalizadorDeArgumentos.new  "--sort=des --format=quiet" , factorizacion
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
   end 
+
+  it 'deberia indicar que recibio argumento format invalido' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+  	salida_formateada = "Ha ingresado un formato invalido. Los formatos aceptados son pretty y quiet. Por favor, intente nuevamente."
+	analizador = AnalizadorDeArgumentos.new  "--format=" , factorizacion
+    expect(analizador.obtener_salida_formateada).to eq salida_formateada
+  end 
   
 end

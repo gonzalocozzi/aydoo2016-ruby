@@ -28,6 +28,14 @@ require_relative '../model/formateador'
   	elegido_format_quiet
   end
 
+  def format_invalido
+  	elegido_format_invalido = false
+  	if argumentos.include? "format=" and !format_pretty and !format_quiet
+      elegido_format_invalido = true
+    end
+    elegido_format_invalido
+  end
+
   def sort
   	elegido_sort = false
   	if argumentos.include? "--sort=des"
@@ -46,15 +54,23 @@ require_relative '../model/formateador'
 
   def obtener_salida_formateada
 
+    salida_formateada = ""
+
+    if format_invalido
+    	salida_formateada = "Ha ingresado un formato invalido. Los formatos aceptados son pretty y quiet. Por favor, intente nuevamente."
+    end
+
   	if sort
-  		formateador.factorizacion = formateador.invertir_orden
+  		formateador.factorizacion.reverse!
   	end
 
   	if format_pretty
-  		formateador.aplicar_formato_pretty
+  		salida_formateada = formateador.aplicar_formato_pretty
   	elsif format_quiet
-  		formateador.aplicar_formato_quiet
+  		salida_formateada = formateador.aplicar_formato_quiet
   	end 
+
+  	salida_formateada
 
   end
 

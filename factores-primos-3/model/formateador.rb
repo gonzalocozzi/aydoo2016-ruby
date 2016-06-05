@@ -19,9 +19,4 @@ class Formateador
 		"Factores primos: " + factorizacion_quiet
 	end
 
-	def invertir_orden
-		factorizacion.reverse
-	end
-
-
 end
