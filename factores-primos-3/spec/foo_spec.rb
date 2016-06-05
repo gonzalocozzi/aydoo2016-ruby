@@ -8,4 +8,9 @@ describe 'Foo' do
 		expect(foo.doFoo).to eq 'foo'
 	end
 
+	it 'should return bar when doBar' do
+		foo = Foo.new
+		expect(foo.doBar).to eq 'bar'
+	end
+
 end
