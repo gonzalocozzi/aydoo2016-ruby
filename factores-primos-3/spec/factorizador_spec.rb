@@ -12,5 +12,10 @@ describe Factorizador do
   	factorizador = Factorizador.new 5
   	expect(factorizador.numero_es_primo).to eq true
   end
+
+  it 'deberia indicar que un numero no primo no es primo' do
+  	factorizador = Factorizador.new 6
+  	expect(factorizador.numero_es_primo).to eq false
+	end
 	
 end
