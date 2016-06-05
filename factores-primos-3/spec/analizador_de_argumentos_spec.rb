@@ -8,6 +8,13 @@ describe AnalizadorDeArgumentos do
   	factorizacion = factorizador.calcular_factores_primos
 	analizador = AnalizadorDeArgumentos.new "--format=pretty" , factorizacion
     expect(analizador.format_pretty).to eq true
+  end  
+  
+  it 'deberia indicar que recibio argumento format pretty cuando no se le especifica argumento' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+	analizador = AnalizadorDeArgumentos.new "", factorizacion
+    expect(analizador.format_pretty).to eq true
   end
 
   it 'deberia indicar que recibio argumento format quiet' do
@@ -45,7 +52,6 @@ describe AnalizadorDeArgumentos do
   	salida_formateada = "Factores primos: " + "\n" + "5" + "\n" + "3" + "\n" + "3" + "\n" + "2" + "\n" + "2" + "\n" + "2"
 	analizador = AnalizadorDeArgumentos.new  "--sort=des --format=quiet" , factorizacion
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
-  end
-  
+  end  
 
 end

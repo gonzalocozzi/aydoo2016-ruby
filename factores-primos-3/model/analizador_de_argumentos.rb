@@ -14,7 +14,7 @@ require_relative '../model/formateador'
 
   def format_pretty
   	elegido_format_pretty = false
-  	if argumentos.include? "--format=pretty"
+  	if argumentos.include? "--format=pretty" or argumentos.empty?
   		elegido_format_pretty = true
   	end
   	elegido_format_pretty
@@ -46,16 +46,14 @@ require_relative '../model/formateador'
 
   def obtener_salida_formateada
 
-  	salida_formateada = ""
-
   	if sort
   		formateador.factorizacion = formateador.invertir_orden
   	end
 
   	if format_pretty
-  		salida_formateada = formateador.aplicar_formato_pretty
+  		formateador.aplicar_formato_pretty
   	elsif format_quiet
-  		salida_formateada = formateador.aplicar_formato_quiet
+  		formateador.aplicar_formato_quiet
   	end 
 
   end
