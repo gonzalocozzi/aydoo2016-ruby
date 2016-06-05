@@ -38,6 +38,14 @@ describe AnalizadorDeArgumentos do
 	analizador = AnalizadorDeArgumentos.new  "--sort=des --format=pretty" , factorizacion
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
   end
+
+  it 'deberia devolver salida formateada quiet e invertida' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+  	salida_formateada = "Factores primos: " + "\n" + "5" + "\n" + "3" + "\n" + "3" + "\n" + "2" + "\n" + "2" + "\n" + "2"
+	analizador = AnalizadorDeArgumentos.new  "--sort=des --format=quiet" , factorizacion
+    expect(analizador.obtener_salida_formateada).to eq salida_formateada
+  end
   
 
 end
