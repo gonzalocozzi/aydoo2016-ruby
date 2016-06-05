@@ -26,7 +26,7 @@ class FactorizadorPrimo
     arreglo_de_factores_primos = Prime.prime_division(numero_a_factorizar).flat_map { |factor, power| [factor] * power }
     
     arreglo_de_factores_primos.each do |arreglo_de_factores_primos|
-        factorizacion += arreglo_de_factores_primos.to_s + " "
+      factorizacion += arreglo_de_factores_primos.to_s + " "
     end
 
     factorizacion[0..factorizacion.length - 2]

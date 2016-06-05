@@ -1,21 +1,22 @@
 class AnalizadorDeArgumentos
 
+require_relative '../model/factorizador_primo'
 require_relative '../model/formateador'
 
 	attr_accessor :argumentos
-	attr_accessor :factorizacion
 	attr_accessor :formateador
 
-  def initialize argumentos , factorizacion 
+  def initialize numero_a_factorizar , argumentos
   	@argumentos = argumentos.downcase
-  	@factorizacion = factorizacion
-  	@formateador = Formateador.new factorizacion 
+  	factorizador = FactorizadorPrimo.new numero_a_factorizar
+  	factorizacion = factorizador.calcular_factores_primos
+  	@formateador = Formateador.new numero_a_factorizar , factorizacion
   end
 
   def format_pretty
   	elegido_format_pretty = false
   	if argumentos.include? "--format=pretty" or !argumentos.include? "--format="
-  		elegido_format_pretty = true
+  	  elegido_format_pretty = true
   	end
   	elegido_format_pretty
   end
@@ -23,7 +24,7 @@ require_relative '../model/formateador'
   def format_quiet
   	elegido_format_quiet = false
   	if argumentos.include? "--format=quiet"
-  		elegido_format_quiet = true
+  	  elegido_format_quiet = true
   	end
   	elegido_format_quiet
   end
@@ -31,7 +32,7 @@ require_relative '../model/formateador'
   def sort
   	elegido_sort = false
   	if argumentos.include? "--sort=des"
-  		elegido_sort = true
+  	  elegido_sort = true
   	end
   	elegido_sort
   end
@@ -39,7 +40,7 @@ require_relative '../model/formateador'
   def output_file
   	elegido_output_file = false
   	if argumentos.include? "--output-file="
-  		elegido_output_file = true
+  	  elegido_output_file = true
   	end
   	elegido_output_file
   end
@@ -55,19 +56,19 @@ require_relative '../model/formateador'
   def format_contradictorio
   	elegido_format_contradictorio = false
   	if format_quiet and format_pretty
-  		elegido_format_contradictorio = true
+  	  elegido_format_contradictorio = true
   	end
   	elegido_format_contradictorio
   end
 
   def analizar_argumentos
   	if sort
-  		formateador.factorizacion.reverse!
+  	  formateador.factorizacion.reverse!
   	end
   	if format_pretty
-  		formateador.aplicar_formato_pretty
+  	  formateador.aplicar_formato_pretty
   	elsif format_quiet
-  		formateador.aplicar_formato_quiet
+  	  formateador.aplicar_formato_quiet
   	end 
   end
 
