@@ -14,7 +14,7 @@ require_relative '../model/formateador'
 
   def format_pretty
   	elegido_format_pretty = false
-  	if argumentos.include? "--format=pretty" or argumentos.empty?
+  	if argumentos.include? "--format=pretty" or !argumentos.include? "--format="
   		elegido_format_pretty = true
   	end
   	elegido_format_pretty
