@@ -45,11 +45,11 @@ require_relative '../model/formateador'
   end
 
   def obtener_salida_formateada
-
   	if format_pretty
   		salida_formateada = formateador.aplicar_formato_pretty
-  	end
-
+  	elsif format_quiet
+  		salida_formateada = formateador.aplicar_formato_quiet
+  	end 
   end
 
 end
