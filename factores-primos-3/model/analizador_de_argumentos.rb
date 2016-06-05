@@ -1,11 +1,15 @@
 class AnalizadorDeArgumentos
 
+require_relative '../model/formateador'
+
 	attr_accessor :argumentos
 	attr_accessor :factorizacion
+	attr_accessor :formateador
 
   def initialize argumentos , factorizacion 
   	@argumentos = argumentos
   	@factorizacion = factorizacion
+  	@formateador = Formateador.new factorizacion 
   end
 
   def format_pretty
@@ -38,6 +42,14 @@ class AnalizadorDeArgumentos
   		elegido_output_file = true
   	end
   	elegido_output_file
+  end
+
+  def obtener_salida_formateada
+
+  	if format_pretty
+  		salida_formateada = formateador.aplicar_formato_pretty
+  	end
+
   end
 
 end
