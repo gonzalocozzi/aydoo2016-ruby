@@ -59,6 +59,13 @@ describe AnalizadorDeArgumentos do
     expect(analizador.output_file).to eq true
   end
 
+  it 'deberia indicar que recibio argumento output file sin importar capitalizacion' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+	analizador = AnalizadorDeArgumentos.new  "--OUTPUT-file=path" , factorizacion
+    expect(analizador.output_file).to eq true
+  end
+
   it 'deberia devolver salida formateada pretty e invertida' do
   	factorizador = FactorizadorPrimo.new 360
   	factorizacion = factorizador.calcular_factores_primos
