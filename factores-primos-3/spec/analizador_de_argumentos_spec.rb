@@ -17,4 +17,11 @@ describe AnalizadorDeArgumentos do
     expect(analizador.format_quiet).to eq true
   end
 
+  it 'deberia indicar que recibio argumento sort' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+	analizador = AnalizadorDeArgumentos.new  "--sort=des" , factorizacion
+    expect(analizador.sort).to eq true
+  end
+
 end

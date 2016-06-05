@@ -24,4 +24,12 @@ class AnalizadorDeArgumentos
   	elegido_format_quiet
   end
 
+  def sort
+  	elegido_sort = false
+  	if argumentos.include? "--sort=des"
+  		elegido_sort = true
+  	end
+  	elegido_sort
+  end
+
 end
