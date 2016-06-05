@@ -7,7 +7,7 @@ require_relative '../model/formateador'
 	attr_accessor :formateador
 
   def initialize argumentos , factorizacion 
-  	@argumentos = argumentos
+  	@argumentos = argumentos.downcase
   	@factorizacion = factorizacion
   	@formateador = Formateador.new factorizacion 
   end
