@@ -28,14 +28,6 @@ require_relative '../model/formateador'
   	elegido_format_quiet
   end
 
-  def format_invalido
-  	elegido_format_invalido = false
-  	if argumentos.include? "format=" and !format_pretty and !format_quiet
-      elegido_format_invalido = true
-    end
-    elegido_format_invalido
-  end
-
   def sort
   	elegido_sort = false
   	if argumentos.include? "--sort=des"
@@ -52,26 +44,41 @@ require_relative '../model/formateador'
   	elegido_output_file
   end
 
-  def obtener_salida_formateada
-
-    salida_formateada = ""
-
-    if format_invalido
-    	salida_formateada = "Ha ingresado un formato invalido. Los formatos aceptados son pretty y quiet. Por favor, intente nuevamente."
+  def format_invalido
+  	elegido_format_invalido = false
+  	if argumentos.include? "format=" and !format_pretty and !format_quiet
+      elegido_format_invalido = true
     end
+    elegido_format_invalido
+  end
 
+  def format_contradictorio
+  	elegido_format_contradictorio = false
+  	if format_quiet and format_pretty
+  		elegido_format_contradictorio = true
+  	end
+  	elegido_format_contradictorio
+  end
+
+  def analizar_argumentos
   	if sort
   		formateador.factorizacion.reverse!
   	end
-
   	if format_pretty
-  		salida_formateada = formateador.aplicar_formato_pretty
+  		formateador.aplicar_formato_pretty
   	elsif format_quiet
-  		salida_formateada = formateador.aplicar_formato_quiet
+  		formateador.aplicar_formato_quiet
   	end 
+  end
 
-  	salida_formateada
-
+  def obtener_salida_formateada
+    if format_invalido
+      "Ha ingresado un formato invalido. Los formatos aceptados son pretty y quiet. Por favor, intente nuevamente."
+    elsif format_contradictorio
+      "Ha ingresado dos formatos a la vez. Solo debe indicar uno al mismo tiempo. Por favor, intente nuevamente."	
+    else
+  	  analizar_argumentos
+    end
   end
 
 end

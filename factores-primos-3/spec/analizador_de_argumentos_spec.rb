@@ -94,7 +94,15 @@ describe AnalizadorDeArgumentos do
   	factorizador = FactorizadorPrimo.new 360
   	factorizacion = factorizador.calcular_factores_primos
   	salida_formateada = "Ha ingresado un formato invalido. Los formatos aceptados son pretty y quiet. Por favor, intente nuevamente."
-	analizador = AnalizadorDeArgumentos.new  "--format=" , factorizacion
+	analizador = AnalizadorDeArgumentos.new  "--format=yerba" , factorizacion
+    expect(analizador.obtener_salida_formateada).to eq salida_formateada
+  end 
+
+  it 'deberia indicar que recibio dos argumentos format distintos' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+  	salida_formateada = "Ha ingresado dos formatos a la vez. Solo debe indicar uno al mismo tiempo. Por favor, intente nuevamente."
+	analizador = AnalizadorDeArgumentos.new  "--format=pretty --format=quiet" , factorizacion
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
   end 
   
