@@ -1,4 +1,4 @@
-class Factorizador	
+class FactorizadorPrimo	
 
   require 'prime'
 
@@ -28,7 +28,7 @@ class Factorizador
     arreglo_de_factores_primos.each do |arreglo_de_factores_primos|
         factorizacion += arreglo_de_factores_primos.to_s + " "
     end
-    
+
     factorizacion
   end
 
