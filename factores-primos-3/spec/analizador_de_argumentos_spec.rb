@@ -30,6 +30,14 @@ describe AnalizadorDeArgumentos do
 	analizador = AnalizadorDeArgumentos.new  "--output-file=path" , factorizacion
     expect(analizador.output_file).to eq true
   end
+
+  it 'deberia devolver salida formateada pretty e invertida' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+  	salida_formateada = "Factores primos: 5 3 3 2 2 2"
+	analizador = AnalizadorDeArgumentos.new  "--sort=des --format=pretty" , factorizacion
+    expect(analizador.obtener_salida_formateada).to eq salida_formateada
+  end
   
 
 end

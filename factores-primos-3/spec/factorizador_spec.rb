@@ -20,13 +20,13 @@ describe FactorizadorPrimo do
 
   it 'deberia devolver un arreglo con los factores primos de un numero no primo' do
     factorizador = FactorizadorPrimo.new 90
-	factorizacion_esperada = "2 3 3 5 "
+	factorizacion_esperada = "2 3 3 5"
 	expect(factorizador.calcular_factores_primos).to eq factorizacion_esperada
   end
 
   it 'deberia devolver el numero primo sin factorizar' do
 	factorizador = FactorizadorPrimo.new 17
-	factorizacion_esperada = "17 "
+	factorizacion_esperada = "17"
 	expect(factorizador.calcular_factores_primos).to eq factorizacion_esperada
   end
 

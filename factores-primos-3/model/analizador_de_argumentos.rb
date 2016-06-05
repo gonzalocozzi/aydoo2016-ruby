@@ -49,7 +49,7 @@ require_relative '../model/formateador'
   	salida_formateada = ""
 
   	if sort
-  		salida_formateada = formateador.invertir_orden
+  		formateador.factorizacion = formateador.invertir_orden
   	end
 
   	if format_pretty
@@ -57,6 +57,7 @@ require_relative '../model/formateador'
   	elsif format_quiet
   		salida_formateada = formateador.aplicar_formato_quiet
   	end 
+
   end
 
 end

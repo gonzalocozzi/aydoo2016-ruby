@@ -29,7 +29,7 @@ class FactorizadorPrimo
         factorizacion += arreglo_de_factores_primos.to_s + " "
     end
 
-    factorizacion
+    factorizacion[0..factorizacion.length - 2]
   end
 
 
