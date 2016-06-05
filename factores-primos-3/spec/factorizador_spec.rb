@@ -24,4 +24,10 @@ describe Factorizador do
 		expect(factorizador.calcular_factores_primos).to eq factorizacion_esperada
 	end
 
+	it 'deberia devolver el numero primo sin factorizar' do
+		factorizador = Factorizador.new 17
+		factorizacion_esperada = "17 "
+		expect(factorizador.calcular_factores_primos).to eq factorizacion_esperada
+	end
+
 end
