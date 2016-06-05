@@ -45,6 +45,13 @@ describe AnalizadorDeArgumentos do
     expect(analizador.sort).to eq true
   end
 
+  it 'deberia indicar que recibio argumento sort sin importar capitalizacion' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+	analizador = AnalizadorDeArgumentos.new  "--sort=DES" , factorizacion
+    expect(analizador.sort).to eq true
+  end
+
   it 'deberia indicar que recibio argumento output file' do
   	factorizador = FactorizadorPrimo.new 360
   	factorizacion = factorizador.calcular_factores_primos
