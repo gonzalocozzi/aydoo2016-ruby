@@ -45,6 +45,13 @@ require_relative '../model/formateador'
   end
 
   def obtener_salida_formateada
+
+  	salida_formateada = ""
+
+  	if sort
+  		salida_formateada = formateador.invertir_orden
+  	end
+
   	if format_pretty
   		salida_formateada = formateador.aplicar_formato_pretty
   	elsif format_quiet
