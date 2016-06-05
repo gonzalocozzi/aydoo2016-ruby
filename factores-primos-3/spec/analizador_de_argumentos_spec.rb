@@ -22,12 +22,19 @@ describe AnalizadorDeArgumentos do
   	factorizacion = factorizador.calcular_factores_primos
 	analizador = AnalizadorDeArgumentos.new "--format=PRETTY" , factorizacion
     expect(analizador.format_pretty).to eq true
-  end 
+  end
 
   it 'deberia indicar que recibio argumento format quiet' do
   	factorizador = FactorizadorPrimo.new 360
   	factorizacion = factorizador.calcular_factores_primos
 	analizador = AnalizadorDeArgumentos.new  "--format=quiet" , factorizacion
+    expect(analizador.format_quiet).to eq true
+  end
+
+  it 'deberia indicar que recibio argumento format quiet sin importar capitalizacion' do
+  	factorizador = FactorizadorPrimo.new 360
+  	factorizacion = factorizador.calcular_factores_primos
+	analizador = AnalizadorDeArgumentos.new  "--format=QUIET" , factorizacion
     expect(analizador.format_quiet).to eq true
   end
 
