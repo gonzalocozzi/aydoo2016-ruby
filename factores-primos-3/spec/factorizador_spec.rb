@@ -17,5 +17,11 @@ describe Factorizador do
   	factorizador = Factorizador.new 6
   	expect(factorizador.numero_es_primo).to eq false
 	end
-	
+
+	it 'deberia devolver un arreglo con los factores primos de un numero no primo' do
+		factorizador = Factorizador.new 90
+		factorizacion_esperada = "2 3 3 5 "
+		expect(factorizador.calcular_factores_primos).to eq factorizacion_esperada
+	end
+
 end
