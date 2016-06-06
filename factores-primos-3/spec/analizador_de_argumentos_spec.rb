@@ -67,9 +67,8 @@ describe AnalizadorDeArgumentos do
   end 
 
   it 'deberia indicar que recibio argumento format invalido' do  	
-  	salida_formateada = "Ha ingresado un formato invalido. Los formatos aceptados son pretty y quiet. Por favor, intente nuevamente."
-	  analizador = AnalizadorDeArgumentos.new 360 , "--format=yerba"
-    expect(analizador.obtener_salida_formateada).to eq salida_formateada
+  	analizador = AnalizadorDeArgumentos.new 360 , "--format=yerba"
+    expect {analizador.obtener_salida_formateada}.to raise_error(FormatoInvalidoError)
   end 
 
   it 'deberia indicar que recibio dos argumentos format distintos' do  	
@@ -79,8 +78,7 @@ describe AnalizadorDeArgumentos do
   end  
 
   it 'deberia indicar que se ha excedido el numero de argumentos admitidos' do  	
-  	salida_formateada = "Ha ingresado mas de tres argumentos. Por favor, intente nuevamente."
-	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=des  --sort=asc --format=quiet --output-file="
+  	analizador = AnalizadorDeArgumentos.new 360 , "--sort=des  --sort=asc --format=quiet --output-file="
     expect {analizador.obtener_salida_formateada}.to raise_error(NumeroDeArgumentosExcedidoError)
   end
   

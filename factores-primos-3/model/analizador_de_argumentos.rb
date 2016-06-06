@@ -4,6 +4,7 @@ require_relative '../model/factorizador_primo'
 require_relative '../model/formateador'
 require_relative '../model/escritor_de_archivo'
 require_relative '../model/numero_de_argumentos_excedido_error'
+require_relative '../model/formato_invalido_error'
 
   attr_accessor :argumentos
   attr_accessor :formateador
@@ -107,7 +108,7 @@ require_relative '../model/numero_de_argumentos_excedido_error'
   	if numero_de_argumentos_excedido
       raise NumeroDeArgumentosExcedidoError.new
     elsif format_invalido
-      "Ha ingresado un formato invalido. Los formatos aceptados son pretty y quiet. Por favor, intente nuevamente."
+      raise FormatoInvalidoError.new
     elsif format_contradictorio
       "Ha ingresado dos formatos a la vez. Solo debe indicar uno al mismo tiempo. Por favor, intente nuevamente."	
     else
