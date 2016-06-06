@@ -30,9 +30,8 @@ describe EscritorDeArchivo do
   end  
 
   it 'deberia indicar que no se ha especificado un nombre de archivo' do  	
-    escritor = EscritorDeArchivo.new "salida" , "--output-file="
-    salida = "No ha especificado el nombre del archivo a escribir. Por favor, intente nuevamente."
-    expect(escritor.escribir_archivo).to eq salida
+    escritor = EscritorDeArchivo.new "salida" , "--output-file="    
+    expect {escritor.escribir_archivo}.to raise_error(SinNombreDeArchivoError)
   end 
 
 end

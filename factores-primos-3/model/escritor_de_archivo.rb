@@ -1,6 +1,7 @@
 class EscritorDeArchivo
 
 require 'pathname'
+require_relative '../model/sin_nombre_de_archivo_error'
 
   attr_accessor :salida
   attr_accessor :argumento_de_direccion
@@ -18,7 +19,7 @@ require 'pathname'
 
   def escribir_archivo
   	if argumento_de_direccion.length == 14
-      "No ha especificado el nombre del archivo a escribir. Por favor, intente nuevamente."
+      raise SinNombreDeArchivoError.new      
   	else
   	  nombre_de_archivo = argumento_de_direccion[15..argumento_de_direccion.length - 3]  	
       direccion_de_archivo = obtener_direccion_de_archivo nombre_de_archivo  
