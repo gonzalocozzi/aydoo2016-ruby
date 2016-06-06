@@ -5,6 +5,7 @@ require_relative '../model/formateador'
 require_relative '../model/escritor_de_archivo'
 require_relative '../model/numero_de_argumentos_excedido_error'
 require_relative '../model/formato_invalido_error'
+require_relative '../model/formato_duplicado_error'
 
   attr_accessor :argumentos
   attr_accessor :formateador
@@ -110,7 +111,7 @@ require_relative '../model/formato_invalido_error'
     elsif format_invalido
       raise FormatoInvalidoError.new
     elsif format_contradictorio
-      "Ha ingresado dos formatos a la vez. Solo debe indicar uno al mismo tiempo. Por favor, intente nuevamente."	
+      raise FormatoDuplicadoError.new	
     else
   	  analizar_argumentos
     end

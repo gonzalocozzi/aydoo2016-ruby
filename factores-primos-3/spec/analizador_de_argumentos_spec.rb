@@ -72,9 +72,8 @@ describe AnalizadorDeArgumentos do
   end 
 
   it 'deberia indicar que recibio dos argumentos format distintos' do  	
-  	salida_formateada = "Ha ingresado dos formatos a la vez. Solo debe indicar uno al mismo tiempo. Por favor, intente nuevamente."
-	  analizador = AnalizadorDeArgumentos.new 360 , "--format=pretty --format=quiet"
-    expect(analizador.obtener_salida_formateada).to eq salida_formateada
+  	analizador = AnalizadorDeArgumentos.new 360 , "--format=pretty --format=quiet"
+    expect {analizador.obtener_salida_formateada}.to raise_error(FormatoDuplicadoError)
   end  
 
   it 'deberia indicar que se ha excedido el numero de argumentos admitidos' do  	
