@@ -1,5 +1,7 @@
 class EscritorDeArchivo
 
+require 'pathname'
+
   attr_accessor :salida
   attr_accessor :argumento_de_direccion
 
@@ -18,11 +20,11 @@ class EscritorDeArchivo
   	if argumento_de_direccion.length == 14
       "No ha especificado el nombre del archivo a escribir. Por favor, intente nuevamente."
   	else
-  	  nombre_de_archivo = argumento_de_direccion[14..argumento_de_direccion.length - 1]  	  
-  	  f = File.open(nombre_de_archivo, 'w')
-	  f.puts salida	  
-	  f.close
-	  direccion_de_archivo = obtener_direccion_de_archivo nombre_de_archivo
+  	  nombre_de_archivo = argumento_de_direccion[15..argumento_de_direccion.length - 3]  	
+      direccion_de_archivo = obtener_direccion_de_archivo nombre_de_archivo  
+  	  f = File.open(direccion_de_archivo, 'w')
+	    f.puts salida	  
+	    f.close	    
   	  "El resultado de la factorizacion ha sido escrito con exito en " + direccion_de_archivo
     end
   end
