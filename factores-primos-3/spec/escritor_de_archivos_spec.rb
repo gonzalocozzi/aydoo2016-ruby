@@ -13,4 +13,10 @@ describe EscritorDeArchivo do
     expect(escritor.salida).to eq "salida"
   end  
 
+  it 'deberia indicar que el archivo ha sido escrito con exito' do  	
+    escritor = EscritorDeArchivo.new "salida" , "--output-file=archivo.txt"
+    salida = "El resultado de la factorizacion ha sido escrito con exito en archivo.txt"
+    expect(escritor.escribir_archivo).to eq salida
+  end  
+
 end

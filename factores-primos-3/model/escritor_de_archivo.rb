@@ -9,6 +9,8 @@ class EscritorDeArchivo
   end
 
   def escribir_archivo
+  	nombre_de_archivo = argumento_de_direccion[14..argumento_de_direccion.length - 1]
+  	"El resultado de la factorizacion ha sido escrito con exito en " + nombre_de_archivo 
   end
 
 end
