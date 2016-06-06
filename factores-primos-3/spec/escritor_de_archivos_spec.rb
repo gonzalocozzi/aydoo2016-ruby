@@ -8,4 +8,9 @@ describe EscritorDeArchivo do
     expect(escritor.argumento_de_direccion).to eq "argumento_de_direccion"
   end  
 
+  it 'deberia indicar la salida a escribir' do  	
+    escritor = EscritorDeArchivo.new "salida" , "argumento_de_direccion"
+    expect(escritor.salida).to eq "salida"
+  end  
+
 end
