@@ -89,7 +89,7 @@ require_relative '../model/escritor_de_archivo'
   	  salida = formateador.aplicar_formato_quiet
   	end
   	if output_file
-      salida = escribir_archivo salida	  
+      salida = escribir_archivo salida_formateada	  
   	end
   	salida
   end
