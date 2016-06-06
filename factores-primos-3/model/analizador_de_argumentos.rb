@@ -62,6 +62,14 @@ require_relative '../model/escritor_de_archivo'
   	@escritor_de_archivo.escribir_archivo
   end
 
+  def numero_de_argumentos_excedido
+  	numero_de_argumentos_excedido = false
+  	if argumentos.split(" ").length > 3
+  		numero_de_argumentos_excedido = true
+  	end
+  	numero_de_argumentos_excedido
+  end
+
   def format_invalido
   	elegido_format_invalido = false
   	if argumentos.include? "format=" and !format_pretty and !format_quiet
@@ -89,13 +97,15 @@ require_relative '../model/escritor_de_archivo'
   	  salida = formateador.aplicar_formato_quiet
   	end
   	if output_file
-      salida = escribir_archivo salida_formateada	  
+      salida = escribir_archivo salida	  
   	end
   	salida
   end
 
   def obtener_salida_formateada
-    if format_invalido
+  	if numero_de_argumentos_excedido
+  	  "Ha ingresado mas de tres argumentos. Por favor, intente nuevamente."
+    elsif format_invalido
       "Ha ingresado un formato invalido. Los formatos aceptados son pretty y quiet. Por favor, intente nuevamente."
     elsif format_contradictorio
       "Ha ingresado dos formatos a la vez. Solo debe indicar uno al mismo tiempo. Por favor, intente nuevamente."	

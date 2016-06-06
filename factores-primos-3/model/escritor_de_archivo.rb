@@ -9,9 +9,9 @@ class EscritorDeArchivo
   end
 
   def obtener_direccion_de_archivo nombre_de_archivo
-  	direccion_absoluta_de_archivo = File.dirname(__FILE__)
-	direccion_de_carpeta_madre = Pathname.new(direccion_absoluta_de_archivo).parent.to_s
-	direccion_de_carpeta_madre + "/" + nombre_de_archivo
+    direccion_absoluta_de_archivo = File.dirname(__FILE__)
+	  direccion_de_carpeta_madre = Pathname.new(direccion_absoluta_de_archivo).parent.to_s
+	  direccion_de_carpeta_madre + "/" + nombre_de_archivo
   end
 
   def escribir_archivo

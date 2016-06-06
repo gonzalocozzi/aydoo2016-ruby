@@ -77,5 +77,11 @@ describe AnalizadorDeArgumentos do
 	analizador = AnalizadorDeArgumentos.new 360 , "--format=pretty --format=quiet"
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
   end  
+
+  it 'deberia indicar que se ha excedido el numero de argumentos admitidos' do  	
+  	salida_formateada = "Ha ingresado mas de tres argumentos. Por favor, intente nuevamente."
+	analizador = AnalizadorDeArgumentos.new 360 , "--sort=des  --sort=asc --format=quiet --output-file="
+    expect(analizador.obtener_salida_formateada).to eq salida_formateada
+  end
   
 end
