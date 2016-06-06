@@ -76,6 +76,6 @@ describe AnalizadorDeArgumentos do
   	salida_formateada = "Ha ingresado dos formatos a la vez. Solo debe indicar uno al mismo tiempo. Por favor, intente nuevamente."
 	analizador = AnalizadorDeArgumentos.new 360 , "--format=pretty --format=quiet"
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
-  end 
+  end  
   
 end

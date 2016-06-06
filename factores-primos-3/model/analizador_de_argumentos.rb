@@ -2,9 +2,11 @@ class AnalizadorDeArgumentos
 
 require_relative '../model/factorizador_primo'
 require_relative '../model/formateador'
+require_relative '../model/escritor_de_archivo'
 
-	attr_accessor :argumentos
-	attr_accessor :formateador
+  attr_accessor :argumentos
+  attr_accessor :formateador
+  attr_accessor :escritor_de_archivo
 
   def initialize numero_a_factorizar , argumentos
   	@argumentos = argumentos.downcase
@@ -45,6 +47,21 @@ require_relative '../model/formateador'
   	elegido_output_file
   end
 
+  def escribir_archivo salida
+  	arreglo_de_argumentos = argumentos.split(" ")
+  	posicion_de_direccion = 0
+
+    for numero in 0...arreglo_de_argumentos.length
+      if arreglo_de_argumentos[numero].include? "--output-file="
+        posicion_de_direccion = numero
+      end
+  	end
+
+  	argumento_de_direccion = arreglo_de_argumentos[posicion_de_direccion]
+  	@escritor_de_archivo = EscritorDeArchivo.new salida , argumento_de_direccion
+  	@escritor_de_archivo.escribir_archivo
+  end
+
   def format_invalido
   	elegido_format_invalido = false
   	if argumentos.include? "format=" and !format_pretty and !format_quiet
@@ -62,14 +79,19 @@ require_relative '../model/formateador'
   end
 
   def analizar_argumentos
+  	salida = ""
   	if sort
   	  formateador.factorizacion.reverse!
   	end
   	if format_pretty
-  	  formateador.aplicar_formato_pretty
+  	  salida = formateador.aplicar_formato_pretty
   	elsif format_quiet
-  	  formateador.aplicar_formato_quiet
-  	end 
+  	  salida = formateador.aplicar_formato_quiet
+  	end
+  	if output_file
+      salida = escribir_archivo salida	  
+  	end
+  	salida
   end
 
   def obtener_salida_formateada
