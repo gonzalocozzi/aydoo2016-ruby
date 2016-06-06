@@ -3,6 +3,7 @@ class AnalizadorDeArgumentos
 require_relative '../model/factorizador_primo'
 require_relative '../model/formateador'
 require_relative '../model/escritor_de_archivo'
+require_relative '../model/numero_de_argumentos_excedido_error'
 
   attr_accessor :argumentos
   attr_accessor :formateador
@@ -104,7 +105,7 @@ require_relative '../model/escritor_de_archivo'
 
   def obtener_salida_formateada
   	if numero_de_argumentos_excedido
-  	  "Ha ingresado mas de tres argumentos. Por favor, intente nuevamente."
+      raise NumeroDeArgumentosExcedidoError.new
     elsif format_invalido
       "Ha ingresado un formato invalido. Los formatos aceptados son pretty y quiet. Por favor, intente nuevamente."
     elsif format_contradictorio
