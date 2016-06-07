@@ -65,10 +65,5 @@ describe AnalizadorDeArgumentos do
 	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=desc --format=quiet"
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
   end 
-
-  it 'deberia indicar que recibio dos argumentos format distintos' do  	
-  	analizador = AnalizadorDeArgumentos.new 360 , "--format=pretty --format=quiet"
-    expect {analizador.obtener_salida_formateada}.to raise_error(FormatoDuplicadoError)
-  end  
   
 end

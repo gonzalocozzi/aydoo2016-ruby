@@ -77,36 +77,6 @@ require_relative '../model/formato_duplicado_error'
   	@escritor_de_archivo.escribir_archivo
   end
 
-  def numero_de_argumentos_excedido
-  	numero_de_argumentos_excedido = false
-
-  	if argumentos.split(" ").length > 3
-  		numero_de_argumentos_excedido = true
-  	end
-
-  	numero_de_argumentos_excedido
-  end
-
-  def format_invalido
-  	elegido_format_invalido = false
-
-  	if argumentos.include? "format=" and !format_pretty and !format_quiet
-      elegido_format_invalido = true
-    end
-
-    elegido_format_invalido
-  end
-
-  def format_contradictorio
-  	elegido_format_contradictorio = false
-
-  	if format_quiet and format_pretty
-  	  elegido_format_contradictorio = true
-  	end
-
-  	elegido_format_contradictorio
-  end
-
   def analizar_argumentos
   	salida = ""
   	
@@ -128,18 +98,10 @@ require_relative '../model/formato_duplicado_error'
   end
 
   def obtener_salida_formateada
-
   	@validador_de_argumentos = ValidadorDeArgumentos.new argumentos , format_pretty , format_quiet
-  	validador_de_argumentos.validar_argumentos
-
-  	if format_invalido
-      fail FormatoInvalidoError.new
-    elsif format_contradictorio
-      fail FormatoDuplicadoError.new	
-    else
-  	  analizar_argumentos
-    end
-
+  	validador_de_argumentos.validar_argumentos    
+  	
+  	analizar_argumentos
   end
 
 end

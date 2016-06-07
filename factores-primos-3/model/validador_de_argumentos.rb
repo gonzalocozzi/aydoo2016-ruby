@@ -33,14 +33,25 @@ require_relative '../model/numero_de_argumentos_excedido_error'
   	numero_de_argumentos_excedido
   end
 
+  def format_duplicado
+  	elegido_format_duplicado = false
+
+  	if format_quiet and format_pretty
+  	  elegido_format_duplicado = true
+  	end
+
+  	elegido_format_duplicado
+  end
+
   def validar_argumentos
 
   	if format_invalido
       fail FormatoInvalidoError.new
     elsif numero_de_argumentos_excedido
       fail NumeroDeArgumentosExcedidoError.new
-    end
-    	
+    elsif format_duplicado
+      fail FormatoDuplicadoError.new
+    end  	
 
   end
 

@@ -12,5 +12,10 @@ describe ValidadorDeArgumentos do
   	validador = ValidadorDeArgumentos.new "--sort=des  --sort=asc --format=quiet --output-file=" , true , true
     expect {validador.validar_argumentos}.to raise_error(NumeroDeArgumentosExcedidoError)
   end
+
+  it 'deberia indicar que recibio dos argumentos format distintos' do  	
+  	validador = ValidadorDeArgumentos.new "--format=pretty --format=quiet" , true , true
+    expect {validador.validar_argumentos}.to raise_error(FormatoDuplicadoError)
+  end  
   
 end
