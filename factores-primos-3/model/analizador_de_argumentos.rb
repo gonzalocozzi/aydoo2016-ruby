@@ -4,9 +4,6 @@ require_relative '../model/factorizador_primo'
 require_relative '../model/formateador'
 require_relative '../model/escritor_de_archivo'
 require_relative '../model/validador_de_argumentos'
-require_relative '../model/numero_de_argumentos_excedido_error'
-require_relative '../model/formato_invalido_error'
-require_relative '../model/formato_duplicado_error'
 
   attr_accessor :argumentos
   attr_accessor :formateador
@@ -60,6 +57,12 @@ require_relative '../model/formato_duplicado_error'
   	elegido_output_file
   end
 
+  def obtener_salida_formateada
+    @validador_de_argumentos = ValidadorDeArgumentos.new argumentos , format_pretty , format_quiet
+    @validador_de_argumentos.validar_argumentos    
+    analizar_argumentos
+  end
+
   def escribir_archivo(salida)
   	arreglo_de_argumentos = argumentos.split(" ")
   	posicion_de_direccion = 0
@@ -97,11 +100,6 @@ require_relative '../model/formato_duplicado_error'
   	salida
   end
 
-  def obtener_salida_formateada
-  	@validador_de_argumentos = ValidadorDeArgumentos.new argumentos , format_pretty , format_quiet
-  	validador_de_argumentos.validar_argumentos    
-  	
-  	analizar_argumentos
-  end
+  private :analizar_argumentos, :escribir_archivo
 
 end
