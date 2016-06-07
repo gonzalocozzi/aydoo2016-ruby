@@ -24,8 +24,7 @@ describe EscritorDeArchivo do
     escritor = EscritorDeArchivo.new "salida" , "--output-file=archivo.txt"
     direccion_absoluta_de_archivo = File.dirname(__FILE__)
     direccion_de_carpeta_madre = Pathname.new(direccion_absoluta_de_archivo).parent.to_s
-    #Por algun motivo el programa exige que se corte el nombre del archivo pero lo escribe perfectamente con su nombre completo
-    salida = "El resultado de la factorizacion ha sido escrito con exito en " + direccion_de_carpeta_madre + "/rchivo.t"
+    salida = "El resultado de la factorizacion ha sido escrito con exito en " + direccion_de_carpeta_madre + "/archivo.txt"
     expect(escritor.escribir_archivo).to eq salida
   end  
 

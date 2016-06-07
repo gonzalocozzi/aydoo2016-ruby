@@ -8,7 +8,7 @@ require_relative '../model/sin_argumentos_error'
   argumentos = ARGV[1..-1].to_s  
 
   if ARGV.size == 0
-    raise SinArgumentosError.new
+    fail SinArgumentosError.new
   else
     analizador_de_argumentos = AnalizadorDeArgumentos.new numero_a_factorizar , argumentos
     puts analizador_de_argumentos.obtener_salida_formateada
