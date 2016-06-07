@@ -1,6 +1,7 @@
 class ValidadorDeArgumentos
 
 require_relative '../model/formato_invalido_error'
+require_relative '../model/numero_de_argumentos_excedido_error'
 
   attr_accessor :argumentos
   attr_accessor :format_pretty
@@ -22,11 +23,24 @@ require_relative '../model/formato_invalido_error'
     elegido_format_invalido
   end
 
+    def numero_de_argumentos_excedido
+  	numero_de_argumentos_excedido = false
+
+  	if argumentos.split(" ").length > 3
+  	  numero_de_argumentos_excedido = true
+  	end
+
+  	numero_de_argumentos_excedido
+  end
+
   def validar_argumentos
 
   	if format_invalido
       fail FormatoInvalidoError.new
+    elsif numero_de_argumentos_excedido
+      fail NumeroDeArgumentosExcedidoError.new
     end
+    	
 
   end
 

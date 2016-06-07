@@ -66,14 +66,9 @@ describe AnalizadorDeArgumentos do
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
   end 
 
-  it 'deberia indicar que recibio argumento format invalido' do  	
-  	analizador = AnalizadorDeArgumentos.new 360 , "--format=yerba"
-    expect {analizador.obtener_salida_formateada}.to raise_error(FormatoInvalidoError)
-  end 
-
   it 'deberia indicar que recibio dos argumentos format distintos' do  	
   	analizador = AnalizadorDeArgumentos.new 360 , "--format=pretty --format=quiet"
     expect {analizador.obtener_salida_formateada}.to raise_error(FormatoDuplicadoError)
-  end
+  end  
   
 end
