@@ -29,12 +29,12 @@ describe AnalizadorDeArgumentos do
   end
 
   it 'deberia indicar que recibio argumento sort' do  	
-	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=des"
+	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=desc"
     expect(analizador.sort).to eq true
   end
 
   it 'deberia indicar que recibio argumento sort sin importar capitalizacion' do  	
-	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=DES"
+	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=DESC"
     expect(analizador.sort).to eq true
   end
 
@@ -50,19 +50,19 @@ describe AnalizadorDeArgumentos do
 
   it 'deberia devolver salida formateada pretty e invertida' do  	
   	salida_formateada = "Factores primos de 360: 5 3 3 2 2 2"
-	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=des --format=pretty"
+	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=desc --format=pretty"
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
   end
 
   it 'deberia devolver salida formateada pretty e invertida cuando no se especifica formato' do  	
   	salida_formateada = "Factores primos de 360: 5 3 3 2 2 2"
-	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=des"
+	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=desc"
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
   end
 
   it 'deberia devolver salida formateada quiet e invertida' do  	
   	salida_formateada = "Factores primos de 360: " + "\n" + "5" + "\n" + "3" + "\n" + "3" + "\n" + "2" + "\n" + "2" + "\n" + "2"
-	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=des --format=quiet"
+	  analizador = AnalizadorDeArgumentos.new 360 , "--sort=desc --format=quiet"
     expect(analizador.obtener_salida_formateada).to eq salida_formateada
   end 
 
@@ -74,11 +74,6 @@ describe AnalizadorDeArgumentos do
   it 'deberia indicar que recibio dos argumentos format distintos' do  	
   	analizador = AnalizadorDeArgumentos.new 360 , "--format=pretty --format=quiet"
     expect {analizador.obtener_salida_formateada}.to raise_error(FormatoDuplicadoError)
-  end  
-
-  it 'deberia indicar que se ha excedido el numero de argumentos admitidos' do  	
-  	analizador = AnalizadorDeArgumentos.new 360 , "--sort=des  --sort=asc --format=quiet --output-file="
-    expect {analizador.obtener_salida_formateada}.to raise_error(NumeroDeArgumentosExcedidoError)
   end
   
 end

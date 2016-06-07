@@ -3,6 +3,7 @@ class AnalizadorDeArgumentos
 require_relative '../model/factorizador_primo'
 require_relative '../model/formateador'
 require_relative '../model/escritor_de_archivo'
+require_relative '../model/validador_de_argumentos'
 require_relative '../model/numero_de_argumentos_excedido_error'
 require_relative '../model/formato_invalido_error'
 require_relative '../model/formato_duplicado_error'
@@ -10,12 +11,13 @@ require_relative '../model/formato_duplicado_error'
   attr_accessor :argumentos
   attr_accessor :formateador
   attr_accessor :escritor_de_archivo
-
+  attr_accessor :validador_de_argumentos
+  
   def initialize(numero_a_factorizar, argumentos)
   	@argumentos = argumentos.downcase
   	factorizador = FactorizadorPrimo.new numero_a_factorizar
   	factorizacion = factorizador.calcular_factores_primos
-  	@formateador = Formateador.new numero_a_factorizar , factorizacion
+  	@formateador = Formateador.new numero_a_factorizar , factorizacion  	
   end
 
   def format_pretty
@@ -41,7 +43,7 @@ require_relative '../model/formato_duplicado_error'
   def sort
   	elegido_sort = false
 
-  	if argumentos.include? "--sort=des"
+  	if argumentos.include? "--sort=desc"
   	  elegido_sort = true
   	end
 
@@ -127,9 +129,10 @@ require_relative '../model/formato_duplicado_error'
 
   def obtener_salida_formateada
 
-  	if numero_de_argumentos_excedido
-      fail NumeroDeArgumentosExcedidoError.new
-    elsif format_invalido
+  	@validador_de_argumentos = ValidadorDeArgumentos.new argumentos , format_pretty , format_quiet
+  	validador_de_argumentos.validar_argumentos
+
+  	if format_invalido
       fail FormatoInvalidoError.new
     elsif format_contradictorio
       fail FormatoDuplicadoError.new	
